@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jsonch8/screens/provider/todoprovider.dart';
+import 'package:jsonch8/screens/provider/userprovider.dart';
 import 'package:provider/provider.dart';
 
 class homepage extends StatelessWidget {
@@ -7,14 +8,20 @@ class homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    todoprovider todofalse = Provider.of<todoprovider>(context,listen:  false);
+    UserProvider userfalse = Provider.of<UserProvider>(context);
     return Scaffold(
-   body: ListView.builder(itemBuilder: (context, index) => ListTile(
-     leading: CircleAvatar(
-         backgroundImage:
-         NetworkImage('${todofalse.totolist[index].url}')),
-     title: Text(todofalse.totolist[index].title),
-   ),),
+
+   body: ListView.builder(itemCount: userfalse.userist.length, itemBuilder: (context, index) => Card(
+     child: ListTile(
+
+       leading: Text(userfalse.userist[index].id.toString()),
+       title: Text(userfalse.userist[index].name),
+       subtitle: Text(userfalse.userist[index].company.name),
+       trailing: Text(userfalse.userist[index].email),
+     ),
+     
+   ),
+   ),
     );
   }
 }

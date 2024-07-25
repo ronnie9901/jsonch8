@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../model/todomodel.dart';
 
-class todoprovider extends ChangeNotifier{
+class TodoProvider extends ChangeNotifier{
   List<Todomodel> totolist=[];
 
   Future<List> jsonParsing()
@@ -21,9 +21,8 @@ class todoprovider extends ChangeNotifier{
     totolist = todo.map((e) => Todomodel.fromMap(e)).toList();
     notifyListeners();
   }
-  todoprovider()
+  TodoProvider()
   {
     fomList();
-
   }
 }
