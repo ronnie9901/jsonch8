@@ -1,16 +1,16 @@
-# jsonch8
 
-A new Flutter project.
 
-## Getting Started
+  <div>
+  <h1>8.1 What is JSON & JSON Parsing ? </h1>
+  <img  height= "550" src="https://github.com/user-attachments/assets/931963a3-5dd9-43b8-b84e-f0a4bab02819"  />
+  </div>
 
-This project is a starting point for a Flutter application.
+## Description
+-> This repository demonstrates how to parse JSON data in a Flutter application. It includes examples of fetching JSON from an API and parsing it into Dart objects for easy manipulation and display.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   <div>
+  <h1>8.1 What is JSON & JSON Parsing ? </h1>
+  <img  height= "550" src="https://github.com/user-attachments/assets/64dae805-e855-47e1-a256-6c85fc807d2a"  />
+  </div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
