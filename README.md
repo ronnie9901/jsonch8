@@ -14,3 +14,14 @@
   <img  height= "550" src="https://github.com/user-attachments/assets/64dae805-e855-47e1-a256-6c85fc807d2a"  />
   </div>
 
+  ![details]()
+![splacescreen]()
+![homepage]()
+
+   <div>
+  <h1>8.1 Bhagwata Gita  ? </h1>
+  <img  height= "550" src="https://github.com/user-attachments/assets/eed33e20-aab3-49e5-90d8-7d8988e6fa94"  />
+     <img  height= "550" src="https://github.com/user-attachments/assets/1aaa1fdd-3fa0-4e34-b07d-7136048a0ab7"  />
+     <img  height= "550" src="https://github.com/user-attachments/assets/606e1a2b-72ad-48f9-b2e1-22d06f3e651f"  />
+  </div>
+
