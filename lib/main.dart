@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/provider/detailProvider.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/provider/homeProvider.dart';
-import 'package:jsonch8/screens/Bhagwatgitascreen/provider/provider.dart';
+import 'package:jsonch8/screens/Bhagwatgitascreen/provider/geta_provider.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/view/homepage.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/view/slokscreen.dart';
 import 'package:jsonch8/screens/provider/postprovider.dart';
@@ -35,10 +35,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
         debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          brightness: Brightness.light,
+        colorScheme: ColorScheme.light(
+          primary: Colors.amber,
+          onPrimary: Colors.pink,
+          secondary: Colors.blue,
+          onSecondary: Colors.green,
+        )
+      ),
+      darkTheme:  ThemeData(
+        brightness: Brightness.dark,
+          colorScheme: ColorScheme.dark(
+            primary: Colors.purple,
+            onPrimary: Colors.blue,
+            secondary: Colors.green,
+            onSecondary: Colors.redAccent,
+            surface: Colors.black12
+
+          )
+      ),
+      themeMode: Provider.of <LagProvider>(context).isdark?ThemeMode.dark:ThemeMode.light,
         routes: {
           '/' : (context) => splscrren(),
-           '/home' : (context) => gitahomepage(),
-           '/slok' : (context) => slokscr(),
+           '/home' : (context) => Gitahomepage(),
+           '/slok' : (context) => Slokscr(),
           // '/' : (context) => posthome(),
           // '/' : (context) => homepage(),
 

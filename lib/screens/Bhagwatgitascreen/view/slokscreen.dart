@@ -11,22 +11,26 @@ import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/provider/detailProvider.dart';
 import 'package:jsonch8/screens/Bhagwatgitascreen/provider/homeProvider.dart';
-import 'package:jsonch8/screens/Bhagwatgitascreen/provider/provider.dart';
+import 'package:jsonch8/screens/Bhagwatgitascreen/provider/geta_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_extend/share_extend.dart';
 
 
-import 'homepage.dart';
+
 
 GlobalKey imgkey = GlobalKey();
 
-class slokscr extends StatelessWidget {
-  const slokscr({super.key});
+class Slokscr extends StatelessWidget {
+  const Slokscr({super.key});
 
   @override
+
   Widget build(BuildContext context) {
     LagProvider latrue = Provider.of<LagProvider>(context, listen: true);
+    LagProvider lafalse = Provider.of<LagProvider>(context, listen: false);
+
+
     DetailScreenProvider dtrue =
         Provider.of<DetailScreenProvider>(context, listen: true);
     DetailScreenProvider dfalse =
@@ -54,6 +58,7 @@ class slokscr extends StatelessWidget {
                   : (dtrue.selectedLanguage == 'English')
                       ? translate[2]
                       : translate[3],
+
         ),
         actions: [
           DropdownButton(
@@ -82,51 +87,59 @@ class slokscr extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('asset/img/3.jpg'),
+                        image: AssetImage(imglist[latrue.selectindex]),
+
                         fit: BoxFit.cover,
-                        opacity: 0.7)),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PageView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) => Center(
-                      child: ListTile(
-                        title: Text(
-                          (dtrue.selectedLanguage == 'Sanskrit')
-                              ? gitafalse.gitaList[selectindex].verses[index]
-                                  .language.sanskrit
-                              : (dtrue.selectedLanguage == 'Hindi')
-                                  ? gitafalse.gitaList[selectindex]
-                                      .verses[index].language.hindi
-                                  : (dtrue.selectedLanguage == 'English')
-                                      ? gitafalse.gitaList[selectindex]
-                                          .verses[index].language.english
-                                      : gitafalse.gitaList[selectindex]
-                                          .verses[index].language.gujarati,
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                        ),
-                        trailing: InkWell(onTap: () {
-                          Clipboard.setData(ClipboardData(text:(dtrue.selectedLanguage == 'Sanskrit')
-                              ? gitafalse.gitaList[selectindex].verses[index]
-                              .language.sanskrit
-                              : (dtrue.selectedLanguage == 'Hindi')
-                              ? gitafalse.gitaList[selectindex]
-                              .verses[index].language.hindi
-                              : (dtrue.selectedLanguage == 'English')
-                              ? gitafalse.gitaList[selectindex]
-                              .verses[index].language.english
-                              : gitafalse.gitaList[selectindex]
-                              .verses[index].language.gujarati,));
-                        },child: Icon(Icons.copy_all_outlined,color: Colors.black,)),
-                      ),
-                    )),
-          )
+                        opacity: 7)),
+                 child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: PageView.builder(
+                        itemCount: gitafalse.gitaList.length,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) => Center(
+                          child: Card(
+                            color: Colors.black12,
+                            child: ListTile(
+                              title: SelectableText(
+                                (dtrue.selectedLanguage == 'Sanskrit')
+                                    ? gitafalse.gitaList[latrue.selectindex].verses[index]
+                                    .language.sanskrit
+                                    : (dtrue.selectedLanguage == 'Hindi')
+                                    ? gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.hindi
+                                    : (dtrue.selectedLanguage == 'English')
+                                    ? gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.english
+                                    : gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.gujarati,
+                                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.yellow.shade100),
+                              ),
+                              trailing: InkWell(onTap: () {
+                                Clipboard.setData(ClipboardData(text:(dtrue.selectedLanguage == 'Sanskrit')
+                                    ? gitafalse.gitaList[latrue.selectindex].verses[index]
+                                    .language.sanskrit
+                                    : (dtrue.selectedLanguage == 'Hindi')
+                                    ? gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.hindi
+                                    : (dtrue.selectedLanguage == 'English')
+                                    ? gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.english
+                                    : gitafalse.gitaList[latrue.selectindex]
+                                    .verses[index].language.gujarati,));
+                              },child: Icon(Icons.copy_all_outlined,color: Colors.yellow.shade100,)),
+                            ),
+                          ),
+                        )),
+                  ),
+
+
+              ),
+          ),
         ],
       ),
+
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextButton(
               onPressed: () async {
@@ -153,11 +166,8 @@ class slokscr extends StatelessWidget {
                 await ShareExtend.share(
                     file.path, "image");
               },
-              child: Container(height: 30,width: 50,alignment: Alignment.center,decoration: BoxDecoration(color: Colors.yellow.shade700,borderRadius: BorderRadius.circular(5)),
-                child: Text(
-                  'share',
-                  style: TextStyle(color: Colors.black),
-                ),
+              child: Container(height: 30,width: 50,alignment: Alignment.center,decoration: BoxDecoration(color: Colors.black12,borderRadius: BorderRadius.circular(5)),
+                child:Icon(Icons.share_rounded,size: 20,color: Colors.yellow.shade100,)
               )),
           TextButton(
               onPressed: () async {
@@ -184,12 +194,7 @@ class slokscr extends StatelessWidget {
 
                 ImageGallerySaver.saveImage(img);
               },
-              child: Container(height: 30,width: 50,alignment: Alignment.center,decoration: BoxDecoration(color: Colors.yellow.shade700,borderRadius: BorderRadius.circular(5),),
-                child: Text(
-                  'save',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ))
+              child: Icon(Icons.save,size: 20,color: Colors.yellow.shade100,))
         ],
       ),
     );
@@ -201,4 +206,28 @@ List translate = [
   'अध्याय',
   'Chapter',
   'પ્રકરણ',
+];
+List imglist=[
+  'asset/img/2.jpg',
+  'asset/img/3.jpg',
+  'asset/img/4.jpg',
+  'asset/img/5.jpg',
+  'asset/img/6.jpg',
+  'asset/img/7.jpg',
+  'asset/img/8.jpg',
+  'asset/img/9.jpg',
+  'asset/img/10.jpg',
+  'asset/img/11.jpg',
+  'asset/img/12.jpg',
+  'asset/img/13.jpg',
+  'asset/img/14.jpg',
+  'asset/img/15.jpg',
+  'asset/img/16.jpg',
+  'asset/img/1.jpg',
+ ' asset/img/s.jpeg',
+  'asset/img/1.jpg',
+
+
+
+
 ];
